@@ -26,28 +26,30 @@ char **strtow(char *str)
 				split[j] = (char *) malloc(sizeof(char) * size + 1);
 				if (split[j] != NULL)
 				{
+
 					while (temp < size)
+					{
 						split[j][temp] = str[(i - size) +temp];
-					temp++;
+						temp++;
+					}
+					split[j][temp] = '\0';
+					size = temp = 0;
+					j++;
 				}
-				split[j][temp] = '\0';
-				size = temp = 0;
-				j++;
-			}
-			else
-			{
-				while (j-- >= 0)
-					free(split[j]);
-				free(split);
-				return (NULL);
+				else
+				{
+					while (j-- >= 0)
+						free(split[j]);
+					free(split);
+					return (NULL);
+				}
 			}
 		}
+		split[words] = NULL;
+		return (split);
 	}
-	split[words] = NULL;
-	return (split);
-}
-else
-return (NULL);
+	else
+		return (NULL);
 }
 
 
